@@ -28,11 +28,10 @@ BCB is fully scalable and flexible, and therefore can either be implemented indi
 
 
 ### Project Development timeline
-//link here
-![](./documentation/timeline.png)
+![](./Screenshots/development-timeline.png)
 
 ### Project Presentation
-//link here
+[here](https://github.com/shivamrulz/BCB-Better_Credit_Bureau/raw/main/Files/6.%20Better%20Credit%20Bureau%20-%20Shivam.pptx)
 
 ## Technical Details (PoC)
 
@@ -42,12 +41,7 @@ The section discusses the technical parameters and user stories, models the clas
 ![](./documentation/sequenceDiagram.png)
 
 
-//
-- [User stories](./documentation/userStories.md)
-- [Class diagram](./documentation/classDiagram.png)
-
 Function description of the project is given as:
-
 | **Function Name**      | **Function Parameters**                                        | **Function actions**                                                                                                                                                                                                                                                                  |
 | ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | getUserInfo()          | Int creditCardNumber                                           | Used by the chain code admin/ BCB to get more information about the credit card holder’s information.
@@ -69,7 +63,5 @@ This function calls getCredit\* functions in the backend for the mirroring proce
 | checkcreditFileExists  | Str cardHolderName, intCardNumber, intcreditFileID             | A function that returns a binary yes or a no as a result of a global lookup of creditFiles to find a possible hit.
 
 The hit is defined in this context as a situation where a user is already registered with BCB in a partner BCB country.                                           |
-
-
 Class Diagram:
 
