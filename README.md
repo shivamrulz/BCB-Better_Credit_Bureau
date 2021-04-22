@@ -37,31 +37,35 @@ BCB is fully scalable and flexible, and therefore can either be implemented indi
 
 The section discusses the technical parameters and user stories, models the class diagram, and describes the functions for the POC.
 
-//
-![](./documentation/sequenceDiagram.png)
+### High Level Architectural Diagram
+
+![](./Screenshots/high-level-architectural.png)
+
+
+
+###Class Diagram:
+
+![](./Screenshots/Class%20diagram.png)
 
 
 Function description of the project is given as:
 | **Function Name**      | **Function Parameters**                                        | **Function actions**                                                                                                                                                                                                                                                                  |
 | ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| getUserInfo()          | Int creditCardNumber                                           | Used by the chain code admin/ BCB to get more information about the credit card holder’s information.
-
-Primarily returns the information about the user such as his address, credit card info and a file that he has in a particular country                                          |
+| getUserInfo()          | Int creditCardNumber                                           | Used by the chain code admin/ BCB to get more information about the credit card holder’s information. Primarily returns the information about the user such as his address, credit card info and a file that he has in a particular country                                          |
 | getCreditFileDetails() | Int creditFileID                                               | Displays various historic information about user’s credit card file.
 
-Used by BCB to do a ‘signup check’ upon onboarding a new user.
+Used by BCB to do a ‘signup check’ upon onboarding a new user. Also used by credit lenders upon doing a hard credit check to understand and validate spending habits of the user.                              |
+| getUserCreditScore     | str creditBureauName, int creditFileID, bool monitoringService | A checking function to quickly check the credit score of a user. Can be used by credit score monitoring services such as Borrowell and Credit Karma to do a soft check for monitoring credit score of the user.                                                                       |
+| setUSerCreditScore     | int creditFileID, str creditFileCountry                        | Used for forking a user credit report once a registration request to BCB is made via lenders. The key feature of the BCB system that allows for moving credit scores and history internationally. This function calls getCredit\* functions in the backend for the mirroring process |
+| checkcreditFileExists  | Str cardHolderName, intCardNumber, intcreditFileID             | A function that returns a binary yes or a no as a result of a global lookup of creditFiles to find a possible hit. The hit is defined in this context as a situation where a user is already registered with BCB in a partner BCB country.                                           |
 
-Also used by credit lenders upon doing a hard credit check to understand and validate spending habits of the user.                              |
-| getUserCreditScore     | str creditBureauName, int creditFileID, bool monitoringService | A checking function to quickly check the credit score of a user
+### Mockups
 
-Can be used by credit score monitoring services such as Borrowell and Credit Karma to do a soft check for monitoring credit score of the user.                                                                       |
-| setUSerCreditScore     | int creditFileID, str creditFileCountry                        | Used for forking a user credit report once a registration request to BCB is made via lenders.
+![](./Screenshots/landing-page.png)
 
-The key feature of the BCB system that allows for moving credit scores and history internationally
+![](./Screenshots/login-page.png)
 
-This function calls getCredit\* functions in the backend for the mirroring process |
-| checkcreditFileExists  | Str cardHolderName, intCardNumber, intcreditFileID             | A function that returns a binary yes or a no as a result of a global lookup of creditFiles to find a possible hit.
+![](./Screenshots/sign-up.png)
 
-The hit is defined in this context as a situation where a user is already registered with BCB in a partner BCB country.                                           |
-Class Diagram:
+![](./Screenshots/credit-report.png)
 
