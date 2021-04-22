@@ -15,7 +15,7 @@ The project is a reimagination of the credit bureau system using hyperledger blo
 The solution being proposed offers an interconnected blockchain ledger and a localised couchDB, leveraging hyperledger fabric blockchain technology. The solution is acronymed BCB - better credit bureau. There are 3 main components of this BCB architecture:
 
 **Hyperledger Fabric**  
-Blockchain as a backend where information about credit cards and credit scores can be stored according to the data and parameters specified below. Current implementation uses channel 0 for the interconnection of BCB nodes, and distributed nodes with VISA, MasterCard, and AMEX for the proof of concept. The project can be scaled to use different channels for different credit card providers and country specific get methods for fetching credit information.
+Blockchain as a backend where information about credit cards and credit scores can be stored according to the data and parameters specified below. Current implementation uses channel 0 for the interconnection of BCB nodes, and challes 1,2 and 3 for distributed nodes with VISA, MasterCard, and AMEX for the dipiction. The project can be scaled to use different channels for different credit card providers and country specific get methods for fetching credit information.
 
 **Express API**  
 Express.js is the API endpoint for BCB to connect to a cloud-based instance of Hyperledger Fabric. For MVP, the instance is based on a GCP, but can be implemented on AWS and Azzure as the solution is scaled in different countries. Additionally, the cloud-based instance would most likely be shifted from a virtual machine to a cloud-based kubernetes cluster.
@@ -28,10 +28,11 @@ BCB is fully scalable and flexible, and therefore can either be implemented indi
 
 
 ### Project Development timeline
+In order to come up with a full fledged working software, a plethora of best minds need to work on this problem such as engineers, designers, and lawyers. Giving the possibility of delays, a one year timeline would be the best case scenario for this project.
 ![](./Screenshots/development-timeline.png)
 
 ### Project Presentation
-[here](https://github.com/shivamrulz/BCB-Better_Credit_Bureau/raw/main/Files/6.%20Better%20Credit%20Bureau%20-%20Shivam.pptx)
+The business presentation that was demonstrated during the capstone showcasing of this project can be found [here](https://github.com/shivamrulz/BCB-Better_Credit_Bureau/raw/main/Files/6.%20Better%20Credit%20Bureau%20-%20Shivam.pptx)
 
 ## Technical Details (PoC)
 
@@ -39,27 +40,33 @@ The section discusses the technical parameters and user stories, models the clas
 
 ### High Level Architectural Diagram
 
+The channeling protocol of hyperledger fabric will be instrumental in enabling secured data sharing between the main BCB nodes, as well as the credit card provider nodes. Flexibility and the high number of transactions throughput of HyperLedger Fabric allows BCB to be super scalable, and fast. 
+
 ![](./Screenshots/high-level-architectural.png)
 
 
 
 ###Class Diagram:
 
+The following diagram shows description of what the baseline class diagram looks like.
+
 ![](./Screenshots/Class%20diagram.png)
 
+### Function Definition
 
-Function description of the project is given as:
-| **Function Name**      | **Function Parameters**                                        | **Function actions**                                                                                                                                                                                                                                                                  |
-| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Following would be the definition of the baseline functions underlying BCB backend implementation
+
+| **Function Name**      | **Function Parameters**                                        | **Function actions**                                                                                                                                                                                                                                                                 |
+| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | getUserInfo()          | Int creditCardNumber                                           | Used by the chain code admin/ BCB to get more information about the credit card holder’s information. Primarily returns the information about the user such as his address, credit card info and a file that he has in a particular country                                          |
-| getCreditFileDetails() | Int creditFileID                                               | Displays various historic information about user’s credit card file.
-
-Used by BCB to do a ‘signup check’ upon onboarding a new user. Also used by credit lenders upon doing a hard credit check to understand and validate spending habits of the user.                              |
-| getUserCreditScore     | str creditBureauName, int creditFileID, bool monitoringService | A checking function to quickly check the credit score of a user. Can be used by credit score monitoring services such as Borrowell and Credit Karma to do a soft check for monitoring credit score of the user.                                                                       |
+| getCreditFileDetails() | Int creditFileID                                               | Displays various historic information about user’s credit card file. Used by BCB to do a ‘signup check’ upon onboarding a new user. Also used by credit lenders upon doing a hard credit check to understand and validate spending habits of the user.                               |
+| getUserCreditScore     | str creditBureauName, int creditFileID, bool monitoringService | A checking function to quickly check the credit score of a user. Can be used by credit score monitoring services such as Borrowell and Credit Karma to do a soft check for monitoring credit score of the user.                                                                      |
 | setUSerCreditScore     | int creditFileID, str creditFileCountry                        | Used for forking a user credit report once a registration request to BCB is made via lenders. The key feature of the BCB system that allows for moving credit scores and history internationally. This function calls getCredit\* functions in the backend for the mirroring process |
-| checkcreditFileExists  | Str cardHolderName, intCardNumber, intcreditFileID             | A function that returns a binary yes or a no as a result of a global lookup of creditFiles to find a possible hit. The hit is defined in this context as a situation where a user is already registered with BCB in a partner BCB country.                                           |
+| checkcreditFileExists  | Str cardHolderName, intCardNumber, intcreditFileID             | A function that returns a binary yes or a no as a result of a global lookup of creditFiles to find a possible hit.The hit is defined in this context as a situation where a user is already registered with BCB in a partner BCB country.                                            |
 
 ### Mockups
+
+Following are the mock ups of how a working prototype of the finished and globally integrated BCB looks like.
 
 ![](./Screenshots/landing-page.png)
 
